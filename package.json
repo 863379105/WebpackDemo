@@ -1,0 +1,20 @@
+{
+  "name": "task1",
+  "version": "1.0.0",
+  "description": "## 基础练习",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/863379105/WebpackDemo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/863379105/WebpackDemo/issues"
+  },
+  "homepage": "https://github.com/863379105/WebpackDemo#readme"
+}

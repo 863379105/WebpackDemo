@@ -1,0 +1,1 @@
+import fn from './fn.js'

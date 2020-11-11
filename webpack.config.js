@@ -1,6 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
 
@@ -9,31 +10,42 @@ module.exports = {
        'detail' : './src/js/detail.js'
     },
 
+    output : {
+        path : path.resolve(__dirname,"dist/"),
+        filename : "js/[name].js"
+    },
+    mode: 'development',
+    devtool: 'source-map',
     plugins: [
         new HtmlWebpackPlugin({
           title: "index",
           filename: "index.html",
           template: "./src/index.html",
+          chunks : ['index']
         }),
         new HtmlWebpackPlugin({
             title: "detail",
             filename: "detail.html",
             template: "./src/detail.html",
+            chunks : ['detail']
         }),
-        new CleanWebpackPlugin()
+        new CleanWebpackPlugin(),
+        new MiniCssExtractPlugin({
+            filename: 'css/[name].css'
+        }),
     ],
-
-    output : {
-        path : path.resolve(__dirname,"dist/"),
-        filename : "[name].js"
-    },
 
     module: {
         rules: [
             {
                 test: /\.css$/,
                 use : [
-                    'style-loader',
+                    { 
+                        loader:MiniCssExtractPlugin.loader,
+                        options : {
+                            publicPath : './css'
+                        }
+                    },
                     {
                         loader : 'css-loader',
                         options : {
@@ -50,7 +62,7 @@ module.exports = {
                     options : {
                         name : "[name].[ext]",
                         outputPath : '/images',
-                        publicPath : '../dist/images'
+                        publicPath : '../images'
                     }
                 }
             }

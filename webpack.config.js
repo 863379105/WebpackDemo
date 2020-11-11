@@ -11,6 +11,7 @@ module.exports = {
     },
 
     output : {
+        publicPath : '',
         path : path.resolve(__dirname,"dist/"),
         filename : "js/[name].js"
     },
@@ -43,7 +44,7 @@ module.exports = {
                     { 
                         loader:MiniCssExtractPlugin.loader,
                         options : {
-                            publicPath : './css'
+                            publicPath : '/dist/css'
                         }
                     },
                     {
@@ -62,11 +63,20 @@ module.exports = {
                     options : {
                         name : "[name].[ext]",
                         outputPath : '/images',
-                        publicPath : '../images'
+                        publicPath : '/dist/images'
                     }
                 }
             }
         ]
+    },
+    devServer: {
+        host : '127.0.0.1',
+        // 生成的虚拟目录路径
+        contentBase: "./dist",
+        // 自动开启浏览器
+        open: true,
+        // 端口
+        port: 8080
     }
 }
 /////暗号暗号：模块打包
